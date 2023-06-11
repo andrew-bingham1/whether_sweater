@@ -45,7 +45,11 @@ group :development, :test do
   gem "simplecov", require: false
   gem 'rspec-rails'
   gem 'pry'
-  
+end
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
