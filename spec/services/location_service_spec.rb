@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LocationService do
-  it 'can create get a locations coordinates' do
+  it 'can create get a locations coordinates', :vcr do
     location_service = LocationService.new
     location = 'denver,co'
     location_response = location_service.get_location(location)
