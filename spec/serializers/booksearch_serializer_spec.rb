@@ -17,6 +17,15 @@ RSpec.describe BooksSerializer do
     expect(json[:data][:id]).to eq(nil)
     expect(json[:data][:type]).to eq('books')
     
+    expect(json[:data][:attributes]).to be_a(Hash)
+    expect(json[:data][:attributes][:destination]).to be_a(String)
+    expect(json[:data][:attributes][:destination]).to eq('denver,co')
+
+    expect(json[:data][:attributes][:forecast]).to be_a(Hash)
+    expect(json[:data][:attributes][:forecast][:summary]).to be_a(String)
+
+    
+
 
   end
 end

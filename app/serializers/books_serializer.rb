@@ -1,7 +1,16 @@
 class BooksSerializer
   include JSONAPI::Serializer
 
-  attributes :destination 
+  attributes :destination do |object|
+    object.book_data[:q]
+  end
+
+  attributes :forecast do |object|
+    {
+      summary: object.forecast_data.data[:current][:condition][:text],
+      temperature: object.forecast_data.data[:current][:temp_f]
+    }
+  end
 
 
 
