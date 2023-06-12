@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'forecast', to: 'forecast#index'
     post 'users', to: 'users#create'
     post 'sessions', to: 'sessions#create'
+    get 'book-search', to: 'booksearch#index'
   end
  end
 end
