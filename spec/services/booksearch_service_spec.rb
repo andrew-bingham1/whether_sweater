@@ -12,4 +12,14 @@ RSpec.describe BooksearchService do
     expect(booksearch[:docs].count).to eq(5)
     expect(booksearch[:numFound]).to eq(758)
   end
+
+  it 'can get books #2', :vcr do
+    location = 'evergreen,co'
+    limit = 5
+
+    booksearch = BooksearchService.new.get_books(location, limit)
+
+    expect(booksearch).to be_a(Hash)
+    expect(booksearch[:docs]).to be_an(Array)
+  end
 end

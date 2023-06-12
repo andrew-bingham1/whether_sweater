@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Book Search API' do
   describe 'happy path' do
     it 'can search for books by city', :vcr do
-      get '/api/v0/book-search?location=denver,co&quantity=5'
+      get '/api/v1/book-search?location=denver,co&quantity=5'
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -38,7 +38,7 @@ RSpec.describe 'Book Search API' do
     end
 
     it 'can search for books by city without state', :vcr do
-      get '/api/v0/book-search?location=denver&quantity=5'
+      get '/api/v1/book-search?location=denver&quantity=5'
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -75,7 +75,7 @@ RSpec.describe 'Book Search API' do
   
   describe 'sad path' do
     it 'returns an error if no city is provided', :vcr do
-      get '/api/v0/book-search?quantity=5'
+      get '/api/v1/book-search?quantity=5'
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -88,7 +88,7 @@ RSpec.describe 'Book Search API' do
     end
 
     it 'returns an error location is blank', :vcr do
-      get '/api/v0/book-search?location=&quantity=5'
+      get '/api/v1/book-search?location=&quantity=5'
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
       
@@ -100,7 +100,7 @@ RSpec.describe 'Book Search API' do
     end
 
     it 'returns an error if a negitive quantity is provided', :vcr do
-      get '/api/v0/book-search?location=denver,co&quantity=-5'
+      get '/api/v1/book-search?location=denver,co&quantity=-5'
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -113,7 +113,7 @@ RSpec.describe 'Book Search API' do
     end
 
     it 'returns an error if a quantity of 0 is provided', :vcr do
-      get '/api/v0/book-search?location=denver,co&quantity=0'
+      get '/api/v1/book-search?location=denver,co&quantity=0'
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -126,7 +126,7 @@ RSpec.describe 'Book Search API' do
     end
 
     it 'returns an error if no quantity is provided', :vcr do
-      get '/api/v0/book-search?location=denver,co'
+      get '/api/v1/book-search?location=denver,co'
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
