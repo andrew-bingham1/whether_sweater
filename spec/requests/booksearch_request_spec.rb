@@ -37,6 +37,7 @@ RSpec.describe 'Book Search API' do
       expect(json_response[:data][:attributes][:books][0][:publisher]).to be_a(Array)
     end
   end
+    
 
   describe 'sad path' do
     it 'returns an error if no city is provided', :vcr do
@@ -50,6 +51,45 @@ RSpec.describe 'Book Search API' do
       expect(json_response).to be_a(Hash)
       expect(json_response).to have_key(:errors)
       expect(json_response[:errors]).to eq('Must Provide a Location')
+    end
+
+    it 'returns an error if a negitive quantity is provided', :vcr do
+      get '/api/v0/book-search?location=denver,co&quantity=-5'
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response).to be_a(Hash)
+      expect(json_response).to have_key(:errors)
+      expect(json_response[:errors]).to eq('Must Provide a Quantity Greater Than 0')
+    end
+
+    it 'returns an error if a quantity of 0 is provided', :vcr do
+      get '/api/v0/book-search?location=denver,co&quantity=0'
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response).to be_a(Hash)
+      expect(json_response).to have_key(:errors)
+      expect(json_response[:errors]).to eq('Must Provide a Quantity Greater Than 0')
+    end
+
+    it 'returns an error if no quantity is provided', :vcr do
+      get '/api/v0/book-search?location=denver,co'
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      
+      json_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json_response).to be_a(Hash)
+      expect(json_response).to have_key(:errors)
+      expect(json_response[:errors]).to eq('Must Provide a Quantity Greater Than 0')
     end
   end
 end
