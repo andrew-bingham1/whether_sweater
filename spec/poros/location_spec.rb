@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Location do
-  it 'exists and has attributes', :vcr do
+  it 'exists and has attributes',  vcr: { record: :new_episodes } do
     location_service = LocationService.new
     location = 'denver,co'
     location_response = location_service.get_location(location)
