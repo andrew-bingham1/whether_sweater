@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.timezonedb.com/v2.1/get-time-zone?by=position&format=json&key=7ATZXOOT7Y4I&lat=8.9824&lng=-79.5199
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 13 Jun 2023 21:49:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Identity:
+      - e7ffd5e29467a294264e5a1320f3c3d9
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7d6d8b61cd1faa70-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "status": "OK",
+            "message": "",
+            "countryCode": "PA",
+            "countryName": "Panama",
+            "regionName": "Panama",
+            "cityName": "Bella Vista",
+            "zoneName": "America\/Panama",
+            "abbreviation": "EST",
+            "gmtOffset": -18000,
+            "dst": "0",
+            "zoneStart": -1946918424,
+            "zoneEnd": null,
+            "nextAbbreviation": null,
+            "timestamp": 1686674977,
+            "formatted": "2023-06-13 16:49:37"
+        }
+  recorded_at: Tue, 13 Jun 2023 21:49:37 GMT
+recorded_with: VCR 6.1.0

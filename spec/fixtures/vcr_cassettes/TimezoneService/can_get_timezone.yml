@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.timezonedb.com/v2.1/get-time-zone?by=position&format=json&key=7ATZXOOT7Y4I&lat=39.74001&lng=-104.99202
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.6
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 13 Jun 2023 21:49:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Identity:
+      - 95d024c57d12ee678a40b9ecbad02e7a
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7d6d8b602e99e78a-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "status": "OK",
+            "message": "",
+            "countryCode": "US",
+            "countryName": "United States",
+            "regionName": "Colorado",
+            "cityName": "Denver",
+            "zoneName": "America\/Denver",
+            "abbreviation": "MDT",
+            "gmtOffset": -21600,
+            "dst": "1",
+            "zoneStart": 1678611600,
+            "zoneEnd": 1699171200,
+            "nextAbbreviation": "MST",
+            "timestamp": 1686671376,
+            "formatted": "2023-06-13 15:49:36"
+        }
+  recorded_at: Tue, 13 Jun 2023 21:49:36 GMT
+recorded_with: VCR 6.1.0
