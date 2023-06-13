@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ForecastSerializer do
-  it 'serializes a forecast object', :vcr do
+  it 'serializes a forecast object',  vcr: { record: :new_episodes } do
     forecast_service = ForecastService.new
     lat = 39.74001
     lng = -104.99202
