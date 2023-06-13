@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Forecast do
-  it 'exists and has attributes', :vcr do
+  it 'exists and has attributes',  vcr: { record: :new_episodes } do
     forecast_service = ForecastService.new
     lat = 39.74001
     lng = -104.99202
@@ -15,7 +15,7 @@ RSpec.describe Forecast do
     expect(forecast.data[:location]).to have_key(:name)
     expect(forecast.data[:location][:name]).to be_a(String)
     expect(forecast.data[:location][:name]).to eq("Denver")
-    
+
     expect(forecast.data).to have_key(:current)
     expect(forecast.data[:current]).to be_a(Hash)
     expect(forecast.data[:current]).to have_key(:temp_f)

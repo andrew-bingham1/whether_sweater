@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Registration API' do
   describe 'happy path' do
-    it 'can create a user', :vcr do
+    it 'can create a user',  vcr: { record: :new_episodes } do
       body = {
         email: 'somethingclever@email.com',
         password: 'biscuits',
@@ -39,7 +39,7 @@ RSpec.describe 'User Registration API' do
   end
 
   describe 'sad paths' do 
-    it 'returns an error if email already exists', :vcr do
+    it 'returns an error if email already exists',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
 
       body = {
@@ -60,7 +60,7 @@ RSpec.describe 'User Registration API' do
       expect(json_response[:errors].first).to eq('Email has already been taken')
     end
 
-    it 'returns an error if passwords do not match', :vcr do
+    it 'returns an error if passwords do not match',  vcr: { record: :new_episodes } do
       body = {
         email: 'somethingclever@email.com',
         password: 'biscuitsforever!',
@@ -79,7 +79,7 @@ RSpec.describe 'User Registration API' do
       expect(json_response[:errors].first).to eq("Password confirmation doesn't match Password")
     end
 
-    it 'returns an error if email is missing', :vcr do
+    it 'returns an error if email is missing',  vcr: { record: :new_episodes } do
       body = {
         email: '',
         password: 'biscuits',
@@ -98,7 +98,7 @@ RSpec.describe 'User Registration API' do
       expect(json_response[:errors].first).to eq("Email can't be blank")
     end
 
-    it 'returns an error if password is missing', :vcr do
+    it 'returns an error if password is missing',  vcr: { record: :new_episodes } do
       body = {
         email: 'somethingcelver@email.com',
         password: '',

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Login API' do
   describe 'happy path' do
-    it 'can login a user', :vcr do
+    it 'can login a user',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
 
       body = {
@@ -32,7 +32,7 @@ RSpec.describe 'Login API' do
   end
 
   describe 'sad paths' do
-    it 'returns an error if email is incorrect', :vcr do
+    it 'returns an error if email is incorrect',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
 
       body = {
@@ -51,7 +51,7 @@ RSpec.describe 'Login API' do
       expect(json_response[:errors]).to eq('Bad Credentials')
     end
 
-    it 'returns an error if password is incorrect', :vcr do
+    it 'returns an error if password is incorrect',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
 
       body = {
@@ -70,7 +70,7 @@ RSpec.describe 'Login API' do
       expect(json_response[:errors]).to eq('Bad Credentials')
     end
 
-    it 'returns an error if email is missing', :vcr do
+    it 'returns an error if email is missing',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
 
       body = {
@@ -89,7 +89,7 @@ RSpec.describe 'Login API' do
       expect(json_response[:errors]).to eq('Bad Credentials')
     end
 
-    it 'returns an error if password is missing', :vcr do
+    it 'returns an error if password is missing',  vcr: { record: :new_episodes } do
       user = User.create!(email: 'somethingclever@email.com', password: 'biscuits', password_confirmation: 'biscuits', api_key: 'jgn983hy48thw9begh98h4539h4')
       
       body = {
@@ -108,7 +108,7 @@ RSpec.describe 'Login API' do
       expect(json_response[:errors]).to eq('Bad Credentials')
     end
 
-    it 'returns an error if the user does not exist', :vcr do
+    it 'returns an error if the user does not exist',  vcr: { record: :new_episodes } do
       body = {
         email: 'somethingoneclever@email.com',
         password: 'biscuits'
