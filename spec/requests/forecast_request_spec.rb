@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Forecast API' do
-  it 'sends a forecast for a city', :vcr do
+  it 'sends a forecast for a city',  vcr: { record: :new_episodes } do
     get '/api/v0/forecast?location=denver,co'
 
     expect(response).to be_successful
